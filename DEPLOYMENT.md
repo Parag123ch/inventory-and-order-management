@@ -64,6 +64,7 @@ Option B, manual Docker web service:
 ```text
 DATABASE_URL=<Render internal Postgres connection string>
 CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+CORS_ORIGIN_REGEX=https://.*\.vercel\.app
 SEED_DEMO_DATA=true
 ```
 
@@ -96,13 +97,33 @@ VITE_API_URL=https://YOUR_RENDER_SERVICE.onrender.com
 
 ## 5. Update Backend CORS
 
-After Vercel gives you the live frontend URL, update Render's `CORS_ORIGINS`:
+The backend includes `CORS_ORIGIN_REGEX=https://.*\.vercel\.app`, so Vercel production and preview URLs are allowed. You can also add your exact Vercel production URL to Render's `CORS_ORIGINS`:
 
 ```text
 https://YOUR_VERCEL_APP.vercel.app,http://localhost:3000,http://localhost:5173
 ```
 
 Redeploy the backend service, then verify the frontend can load dashboard, products, customers, and orders.
+
+## Troubleshooting Failed to Fetch on Vercel
+
+If the deployed frontend shows `Failed to fetch`, check these in order:
+
+1. Open `https://YOUR_RENDER_SERVICE.onrender.com/health`. It must show `{"status":"ok"}`.
+2. Open `https://YOUR_RENDER_SERVICE.onrender.com/products`. It should return seeded products.
+3. In Vercel, confirm `VITE_API_URL` is set to the Render backend origin only, with no trailing slash:
+
+```text
+https://YOUR_RENDER_SERVICE.onrender.com
+```
+
+4. Redeploy the Vercel project after changing `VITE_API_URL`. Vite reads this value during build.
+5. In Render, confirm these backend env vars exist, then redeploy:
+
+```text
+CORS_ORIGIN_REGEX=https://.*\.vercel\.app
+SEED_DEMO_DATA=true
+```
 
 ## Submission Checklist
 

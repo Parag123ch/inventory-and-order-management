@@ -46,6 +46,11 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root() -> dict:
+    return {"status": "ok", "message": "Inventory and Order Management API is running."}
+
+
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok"}

@@ -1,4 +1,3 @@
-from contextlib import asynccontextmanager
 from decimal import Decimal
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -25,8 +24,7 @@ from .schemas import (
 
 settings = get_settings()
 
-@asynccontextmanager
-def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     if settings.seed_demo_data:
         db = SessionLocal()

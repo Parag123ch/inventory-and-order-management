@@ -1,0 +1,307 @@
+:root {
+  color: #17202a;
+  background: #f4f7f6;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.appShell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #20312e;
+  color: #f7fbf9;
+  padding: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.brand span {
+  display: block;
+  color: #a9c9c0;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+nav {
+  display: grid;
+  gap: 8px;
+}
+
+nav button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #f7fbf9;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 11px 12px;
+  text-align: left;
+}
+
+nav button.active,
+nav button:hover {
+  background: #eff8f4;
+  color: #20312e;
+}
+
+.workspace {
+  padding: 28px;
+}
+
+.topbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.topbar p {
+  color: #66736e;
+  margin-bottom: 0;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.metric,
+.panel {
+  background: #ffffff;
+  border: 1px solid #dde6e2;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.06);
+}
+
+.metric {
+  padding: 18px;
+}
+
+.metric span {
+  color: #66736e;
+  display: block;
+  font-size: 14px;
+}
+
+.metric strong {
+  display: block;
+  font-size: 32px;
+  margin-top: 8px;
+}
+
+.panel {
+  padding: 20px;
+}
+
+.twoColumn {
+  align-items: start;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 18px;
+}
+
+.formPanel {
+  display: grid;
+  gap: 14px;
+}
+
+label {
+  color: #31413d;
+  display: grid;
+  gap: 7px;
+  font-weight: 650;
+}
+
+input,
+select {
+  border: 1px solid #cbd8d3;
+  border-radius: 6px;
+  color: #17202a;
+  min-height: 42px;
+  padding: 9px 10px;
+  width: 100%;
+}
+
+button {
+  background: #26725f;
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  min-height: 40px;
+  padding: 9px 14px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.secondary {
+  background: #e8eeeb;
+  color: #20312e;
+}
+
+.iconButton {
+  align-items: center;
+  background: #f7e6e2;
+  color: #9a3412;
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0;
+  width: 36px;
+}
+
+.iconButton:disabled {
+  color: #8b9792;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 680px;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5ece9;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: #566560;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.notice {
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+}
+
+.success {
+  background: #e4f5eb;
+  color: #17623f;
+}
+
+.error {
+  background: #fde8e7;
+  color: #9f1d1d;
+}
+
+.orderLine {
+  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px 36px;
+  gap: 10px;
+}
+
+.totalPreview {
+  background: #f3f7f5;
+  border-radius: 6px;
+  color: #20312e;
+  font-weight: 700;
+  padding: 12px;
+}
+
+.details {
+  background: #f7faf8;
+  border: 1px solid #dde6e2;
+  border-radius: 8px;
+  margin-top: 18px;
+  padding: 16px;
+}
+
+@media (max-width: 900px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    padding: 16px;
+  }
+
+  nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workspace {
+    padding: 18px;
+  }
+
+  .topbar,
+  .twoColumn {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  nav,
+  .metrics,
+  .orderLine {
+    grid-template-columns: 1fr;
+  }
+}

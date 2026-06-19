@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from decimal import Decimal
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -23,19 +24,9 @@ from .schemas import (
 )
 
 settings = get_settings()
-app = FastAPI(title=settings.app_name)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[origin.strip() for origin in settings.cors_origins.split(",")],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-@app.on_event("startup")
-def startup() -> None:
+@asynccontextmanager
+def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     if settings.seed_demo_data:
         db = SessionLocal()
@@ -43,6 +34,18 @@ def startup() -> None:
             seed_demo_data(db)
         finally:
             db.close()
+    yield
+
+app = FastAPI(title=settings.app_name, lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[origin.strip() for origin in settings.cors_origins.split(",")],
+    allow_origin_regex=settings.cors_origin_regex,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")

@@ -64,7 +64,6 @@ Option B, manual Docker web service:
 ```text
 DATABASE_URL=<Render internal Postgres connection string>
 CORS_ORIGINS=http://localhost:3000,http://localhost:5173
-CORS_ORIGIN_REGEX=https://.*\.vercel\.app
 SEED_DEMO_DATA=true
 ```
 
